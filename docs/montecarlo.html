@@ -20,7 +20,7 @@ The predicate assumes that <var>File</var> designates a PLP object program, whic
 transformed into an equivalent standard prolog program. The predicate then samples <var>Query</var>
 either a fixed number of times or until a confidence value (as detailed in Riguzzi 2013, p. 6)
 reaches a configured threshold and returns the sampled <var>Probability</var> of the query being true.
-Non-ground queries are treated as existential queries.</p>
+Non-ground queries are treated as existential queries, unless the non_existential option flag has explicitly been set to true.</p>
 
 <p>
 <var>Options</var> is a list configuring the sampling process. Available options:</p>
@@ -33,6 +33,7 @@ Set to a value other than a number to instead take a fixed amount of samples.</d
 <dt class="term"><b class="pred">count</b><var class="arglist">(+Count:int)</var></dt><dd>Amount of samples taken.
 (confidence unset -&gt; in total; confidence set -&gt; at once between calulating confidence values)</dd>
 <dt class="term"><b class="pred">silent</b><var class="arglist">(+Silent:int)</var></dt><dd>Suppress logging informational output (if value &gt; 0).</dd>
+<dt class="term"><b class="pred">non_existential</b><var class="arglist">(+NonExt:boolean)</var></dt><dd>If the given query is non-ground, compute the probabilities of the individual groundings.</dd>
 </dl>
 
 </dd>
