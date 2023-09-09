@@ -10,6 +10,9 @@
 
 :- dynamic(transformed:(<---)/1).
 :- dynamic(transformed:(<---)/2).
+:- multifile(transformed:(<---)/1).
+:- multifile(transformed:(<---)/2).
+
 :- dynamic((::)/2).
 :- dynamic(transformed:samp/3).
 :- dynamic(transformed:sampled/3).
