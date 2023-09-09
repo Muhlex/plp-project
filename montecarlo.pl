@@ -11,7 +11,7 @@
  * transformed into an equivalent standard prolog program. The predicate then samples `Query`
  * either a fixed number of times or until a confidence value (as detailed in Riguzzi 2013, p. 6)
  * reaches a configured threshold and returns the sampled `Probability` of the query being true.
- * Non-ground queries are treated as existential queries.
+ * Non-ground queries are treated as existential queries, unless the non_existential option flag has explicitly been set to true.
  *
  * `Options` is a list configuring the sampling process. Available options:
  * * sampler(+SamplerParams:list)
@@ -25,6 +25,8 @@
  *   (confidence unset -> in total; confidence set -> at once between calulating confidence values)
  * * silent(+Silent:int)
  *   Suppress logging informational output (if value > 0).
+ * * non_existential(+NonExt:boolean)
+ * 	 If the given query is non-ground and fixed sampling is being used, compute the probabilities of the individual groundings.
  */
 montecarlo(File, Query, Probability, Options) :-
 	Defaults = [
@@ -97,10 +99,6 @@ take_samples_confidence(Query, Threshold, BatchSize, CurrSamples, CurrSuccesses,
 	;
 		take_samples_confidence(Query, Threshold, BatchSize, NewSamples, NewSuccesses, SamplerOpts, Probability, Samples, Successes)
 	).
-
-
-
-
 
 sample_batch(Query, Successes, BatchSize, SamplerOpts) :-
 	sample_batch(Query, 0, Successes, BatchSize, SamplerOpts).
